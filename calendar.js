@@ -40,3 +40,5 @@ icon.addEventListener("click", () => { // adding click event on both icons
   renderCalendar();
 });
 });
+
+
