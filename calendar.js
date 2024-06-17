@@ -81,6 +81,13 @@ function saveEvents() {
   localStorage.setItem("events", JSON.stringify(eventsArr));
 }
 
+//select active day and add event class if not added
+  const activeDayEl = document.querySelector(".day.active");
+  if (!activeDayEl.classList.contains("event")) {
+    activeDayEl.classList.add("event");
+  }
+});
+
 //function to get events from local storage
 function getEvents() {
   //check if events are already saved in local storage then return event else nothing
