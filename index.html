@@ -13,6 +13,30 @@
   <body>
     <h1>Rsources</h1>
     <br>
+    <div class = "box">
+      <form method = "post">
+        <div class = "form-group">
+          <label for = "title"> Enter Title for Event </label>
+          <input type = "text" name = "title" id = "title" placeholder = "Enter Title" 
+            required-data-parsley-type = "title" data-parsley-trigger = "keyup"
+            class = "form-control"/>
+        </div>
+        <div class = "form-group">
+          <label for = "date"> Start Date</label>
+            <input type = "date" name = "start_date" id = "start_date"
+              required-data-parsley-type = "date"  data-parsley-trigger = "keyup" class = "form-control"/>
+        </div>
+        <div class = "form-group">
+          <label for = "date"> End Date </label>
+          <label for = "date"> Start Date</label>
+            <input type = "date" name = "end_date" id = "end_date"
+              required-data-parsley-type = "date"  data-parsley-trigger = "keyup" class = "form-control"/>
+        </div>
+        <div class = "form-group">
+          <input type = "submit" id = "save-event" name = "save-event"
+          value = "Save Event" class = "btn-sucess"/>
+        </div> 
+          
     <div class="wrapper">
       <header>
         <p class="current-date"></p>
