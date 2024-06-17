@@ -46,6 +46,7 @@ const renderCalendar = () => {
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
 }
+renderCalendar();
 
 //function to add event
 addEventBtn.addEventListener("click", () => {
@@ -72,13 +73,11 @@ function saveEvents() {
 }
 
 //select active day and add event class if not added
-  const activeDayEl = document.querySelector(".day.active");
+  const activeDayEl = document.querySelector(".day");
   if (!activeDayEl.classList.contains("event")) {
     activeDayEl.classList.add("event");
   }
 });
-
-renderCalendar();
 
 prevNextIcon.forEach(icon => { // getting prev and next icons
     icon.addEventListener("click", () => { // adding click event on both icons
@@ -96,7 +95,6 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         renderCalendar(); // calling renderCalendar function
     });
 });
-
 
 //function to get events from local storage
 function getEvents() {
