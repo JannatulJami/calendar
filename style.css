@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   display: flex;
   align-items: center;
   padding: 0 10px;
@@ -12,21 +12,21 @@ body{
   min-height: 100vh;
   background: #9B59B6;
 }
-.wrapper{
+.wrapper {
   width: 550px;
   background-color: #fff0db;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
-.wrapper header{
+.wrapper header {
   display: flex;
   align-items: center;
   padding: 25px 30px 10px;
   justify-content: space-between;
 }
-header .icons{
+header .icons {
   display: flex;
 }
-header .icons span{
+header .icons span {
   height: 38px;
   width: 38px;
   margin: 0 1px;
@@ -38,62 +38,86 @@ header .icons span{
   user-select: none;
   border-radius: 50%;
 }
-.icons span:last-child{
+.icons span:last-child {
   margin-right: -10px;
 }
-header .icons span:hover{
+header .icons span:hover {
   background: #FFD9F1;
 }
-header .current-date{
+header .current-date {
   font-size: 1.45rem;
   font-weight: 500;
 }
-.calendar{
+.calendar {
   padding: 30px;
 }
-.calendar ul{
+.calendar ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   text-align: center;
 }
-.calendar .days{
+.calendar .days {
   margin-bottom: 20px;
 }
-.calendar li{
+.calendar li {
   color: #333;
   width: calc(100% / 7);
   font-size: 1.07rem;
 }
-.calendar .weeks li{
+.calendar .weeks li {
   font-weight: 100;
 }
-.calendar .days li{
+.calendar .days li {
   z-index: 1;
   cursor: pointer;
   position: relative;
   margin-top: 30px;
 }
-.days li.inactive{
+.days li.inactive {
   color: #aaa;
 }
-.days li.active{
+.days li.active {
   color: #fff;
 }
-.days li::before{
+.days li::before {
   position: absolute;
   content: "";
   left: 50%;
   top: 50%;
-  height: 40px;
   width: 40px;
+  height: 40px;
   z-index: -1;
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
-.days li.active::before{
+.days li.active::before {
   background: #FFBCDB;
 }
-.days li:not(.active):hover::before{
+.days li:not(.active):hover::before {
   background: #D5CFB7;
+}
+.event-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
 }
