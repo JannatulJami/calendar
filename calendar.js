@@ -92,6 +92,7 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 function saveEvents() {
   localStorage.setItem("events", JSON.stringify(eventsArr));
 }
+
 //function to get events from local storage
 function getEvents() {
   //check if events are already saved in local storage then return event else nothing
@@ -99,6 +100,14 @@ function getEvents() {
     return;
   }
   eventsArr.push(...JSON.parse(localStorage.getItem("events")));
+}
+
+//function get active day day name and date and update eventday eventdate
+function getActiveDay(date) {
+  const day = new Date(year, month, date);
+  const dayName = day.toString().split(" ")[0];
+  eventDay.innerHTML = dayName;
+  eventDate.innerHTML = date + " " + months[month] + " " + year;
 }
 
 function convertTime(time) {
@@ -110,5 +119,4 @@ function convertTime(time) {
   timeHour = timeHour % 12 || 12;
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
- renderCalender();
 }
