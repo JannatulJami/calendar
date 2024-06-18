@@ -62,15 +62,10 @@ document.addEventListener("click", (e) => {
     addEventWrapper.classList.remove("active");
   }
 });
- const activeDayEl = document.querySelector(".days.active");
-  if (!activeDayEl.classList.contains("event")) {
-    activeDayEl.classList.add("event");
-  }
-});
 
 
 //select active day and add event class if not added
-  const activeDayEl = document.querySelector(".days");
+  const activeDayEl = document.querySelector(".days.active");
   if (!activeDayEl.classList.contains("event")) {
     activeDayEl.classList.add("event");
   }
