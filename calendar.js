@@ -87,42 +87,6 @@ function addListner() {
       days.forEach((day) => {
         day.classList.remove("active");
       });
-      //if clicked prev-date or next-date switch to that month
-      if (e.target.classList.contains("prev-date")) {
-        prevMonth();
-        //add active to clicked day afte month is change
-        setTimeout(() => {
-          //add active where no prev-date or next-date
-          const days = document.querySelectorAll(".days");
-          days.forEach((day) => {
-            if (
-              !day.classList.contains("prev-date") &&
-              day.innerHTML === e.target.innerHTML
-            ) {
-              day.classList.add("active");
-            }
-          });
-        }, 100);
-      } else if (e.target.classList.contains("next-date")) {
-        nextMonth();
-        //add active to clicked day afte month is changed
-        setTimeout(() => {
-          const days = document.querySelectorAll(".days");
-          days.forEach((day) => {
-            if (
-              !day.classList.contains("next-date") &&
-              day.innerHTML === e.target.innerHTML
-            ) {
-              day.classList.add("active");
-            }
-          });
-        }, 100);
-      } else {
-        e.target.classList.add("active");
-      }
-    });
-  });
-}
 
 todayBtn.addEventListener("click", () => {
   today = new Date();
