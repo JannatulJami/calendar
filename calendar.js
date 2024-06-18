@@ -70,7 +70,7 @@ document.addEventListener("click", (e) => {
 
 
 //select active day and add event class if not added
-  const activeDayEl = document.querySelector(".day");
+  const activeDayEl = document.querySelector(".days");
   if (!activeDayEl.classList.contains("event")) {
     activeDayEl.classList.add("event");
   }
