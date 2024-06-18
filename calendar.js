@@ -92,7 +92,6 @@ todayBtn.addEventListener("click", () => {
   today = new Date();
   month = today.getMonth();
   year = today.getFullYear();
-  initCalendar();
 });
 
 
