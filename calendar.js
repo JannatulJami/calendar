@@ -5,7 +5,8 @@ eventModal = document.querySelector(".event-modal"),
 closeModalBtn = document.querySelector(".close"),
 addEventBtn = document.getElementById("add-event-btn"),
 eventTitleInput = document.getElementById("event-title"),
-eventTimeInput = document.getElementById("event-time");
+eventTimeInput = document.getElementById("event-time"),
+eventList = document.getElementById("event-list");
 
 let date = new Date(),
 currYear = date.getFullYear(),
@@ -72,6 +73,7 @@ function addDayClickListeners() {
 function showEventModal(day) {
     eventModal.style.display = "flex";
     eventModal.setAttribute("data-day", day);
+    displayEvents(day);
 }
 
 closeModalBtn.addEventListener("click", () => {
@@ -92,5 +94,13 @@ addEventBtn.addEventListener("click", () => {
         eventModal.style.display = "none";
         eventTitleInput.value = "";
         eventTimeInput.value = "";
+        displayEvents(day);
     }
 });
+
+function displayEvents(day) {
+    const eventDate = `${currYear}-${currMonth}-${day}`;
+    eventList.innerHTML = '';
+    if (events[eventDate]) {
+        events[eventDate].forEach(event => {
+            const eventItem = document.create
