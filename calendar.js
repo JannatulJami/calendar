@@ -27,50 +27,22 @@ const renderCalendar = () => {
   addEventTo = document.querySelector(".event-time-to "),
   addEventSubmit = document.querySelector(".add-event-btn ");
     let liTag = "";
-
-
-    for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
+  for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
         liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
     }
-
-    for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
+for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding active class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
                      && currYear === new Date().getFullYear() ? "active" : "";
         liTag += `<li class="${isToday}">${i}</li>`;
     }
-
-    for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
+   for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
     }
     currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
 }
 renderCalendar();
-
-//function to add event
-addEventBtn.addEventListener("click", () => {
-  addEventWrapper.classList.toggle("active");
-});
-
-addEventCloseBtn.addEventListener("click", () => {
-  addEventWrapper.classList.remove("active");
-});
-
-document.addEventListener("click", (e) => {
-  if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
-    addEventWrapper.classList.remove("active");
-  }
-});
-
-
-//select active day and add event class if not added
-  const activeDayEl = document.querySelector(".days.active");
-  if (!activeDayEl.classList.contains("event")) {
-    activeDayEl.classList.add("event");
-  }
-});
-
 prevNextIcon.forEach(icon => { // getting prev and next icons
     icon.addEventListener("click", () => { // adding click event on both icons
         // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
@@ -87,6 +59,87 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
         renderCalendar(); // calling renderCalendar function
     });
 });
+
+//function to add event
+addEventBtn.addEventListener("click", () => {
+  addEventWrapper.classList.toggle("active");
+});
+
+addEventCloseBtn.addEventListener("click", () => {
+  addEventWrapper.classList.remove("active");
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target !== addEventBtn && !addEventWrapper.contains(e.target)) {
+    addEventWrapper.classList.remove("active");
+  }
+});
+
+//function to add active on day
+function addListner() {
+  const days = document.querySelectorAll(".day");
+  days.forEach((day) => {
+    day.addEventListener("click", (e) => {
+      getActiveDay(e.target.innerHTML);
+      updateEvents(Number(e.target.innerHTML));
+      activeDay = Number(e.target.innerHTML);
+      //remove active
+      days.forEach((day) => {
+        day.classList.remove("active");
+      });
+      //if clicked prev-date or next-date switch to that month
+      if (e.target.classList.contains("prev-date")) {
+        prevMonth();
+        //add active to clicked day afte month is change
+        setTimeout(() => {
+          //add active where no prev-date or next-date
+          const days = document.querySelectorAll(".day");
+          days.forEach((day) => {
+            if (
+              !day.classList.contains("prev-date") &&
+              day.innerHTML === e.target.innerHTML
+            ) {
+              day.classList.add("active");
+            }
+          });
+        }, 100);
+      } else if (e.target.classList.contains("next-date")) {
+        nextMonth();
+        //add active to clicked day afte month is changed
+        setTimeout(() => {
+          const days = document.querySelectorAll(".day");
+          days.forEach((day) => {
+            if (
+              !day.classList.contains("next-date") &&
+              day.innerHTML === e.target.innerHTML
+            ) {
+              day.classList.add("active");
+            }
+          });
+        }, 100);
+      } else {
+        e.target.classList.add("active");
+      }
+    });
+  });
+}
+
+todayBtn.addEventListener("click", () => {
+  today = new Date();
+  month = today.getMonth();
+  year = today.getFullYear();
+  initCalendar();
+});
+
+
+//select active day and add event class if not added
+  const activeDayEl = document.querySelector(".days.active");
+  if (!activeDayEl.classList.contains("event")) {
+    activeDayEl.classList.add("event");
+  }
+});
+
+
 
 //function to save events in local storage
 function saveEvents() {
