@@ -77,7 +77,7 @@ document.addEventListener("click", (e) => {
 
 //function to add active on day
 function addListner() {
-  const days = document.querySelectorAll(".day");
+  const days = document.querySelectorAll(".days");
   days.forEach((day) => {
     day.addEventListener("click", (e) => {
       getActiveDay(e.target.innerHTML);
@@ -93,7 +93,7 @@ function addListner() {
         //add active to clicked day afte month is change
         setTimeout(() => {
           //add active where no prev-date or next-date
-          const days = document.querySelectorAll(".day");
+          const days = document.querySelectorAll(".days");
           days.forEach((day) => {
             if (
               !day.classList.contains("prev-date") &&
@@ -107,7 +107,7 @@ function addListner() {
         nextMonth();
         //add active to clicked day afte month is changed
         setTimeout(() => {
-          const days = document.querySelectorAll(".day");
+          const days = document.querySelectorAll(".days");
           days.forEach((day) => {
             if (
               !day.classList.contains("next-date") &&
