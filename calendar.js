@@ -9,24 +9,30 @@ const daysTag = document.querySelector(".days"),
   eventTimeInput = document.getElementById("event-time"), 
   eventList = document.getElementById("event-list"); 
           
-          let date = new Date(), 
-            currYear = date.getFullYear(), 
-            currMonth = date.getMonth(), 
-            events = JSON.parse(localStorage.getItem("events")) || {}; const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
+ let date = new Date(), 
+ currYear = date.getFullYear(), 
+  currMonth = date.getMonth(), 
+events = JSON.parse(localStorage.getItem("events")) || {}; 
+
+const months = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"]; 
           
-          const renderCalendar = () => { 
-            let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), 
-              lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), 
-              lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), 
-              lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); 
-            let liTag = ""; for (let i = firstDayofMonth; i > 0; i--) { liTag += `
-${lastDateofLastMonth - i + 1}
-`; } for (let i = 1; i <= lastDateofMonth; i++) { let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : ""; let eventClass = events[`${currYear}-${currMonth}-${i}`] ? "event" : ""; liTag += `
-${i} `; } 
+const renderCalendar = () => { 
+ let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), 
+  lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), 
+  lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), 
+ lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); 
+           
+  let liTag = ""; for (let i = firstDayofMonth; i > 0; i--) { liTag += `
+${lastDateofLastMonth - i + 1}`; } 
+  for (let i = 1; i <= lastDateofMonth; i++) 
+  { let isToday = i === date.getDate() && currMonth === new Date().getMonth() 
+    && currYear === new Date().getFullYear() ? "active" : ""; 
+   let eventClass = events[`${currYear}-${currMonth}-${i}`] ? "event" : ""; liTag += `${i} `; } 
             for (let i = lastDayofMonth; i < 6; i++) { liTag += ` 
 ${i - lastDayofMonth + 1}`; } 
-            currentDate.innerText = `${months[currMonth]} ${currYear}`; 
-            daysTag.innerHTML = liTag; addDayClickListeners(); } 
+ currentDate.innerText = `${months[currMonth]} ${currYear}`; 
+ daysTag.innerHTML = liTag; addDayClickListeners(); } 
             renderCalendar();
           prevNextIcon.forEach(icon => {
             icon.addEventListener("click", () => { currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1; if (currMonth < 0 || currMonth > 11) 
