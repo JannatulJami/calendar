@@ -98,4 +98,13 @@ prevNextIcon.forEach(icon => {
         if (currMonth < 0 || currMonth > 11) {
             date = new Date(currYear, currMonth, new Date().getDate());
             currYear = date.getFullYear();
-            currMonth =
+            currMonth = date.getMonth();
+        } else {
+            date = new Date();
+        }
+
+        renderCalendar();
+    });
+});
+
+renderCalendar();
